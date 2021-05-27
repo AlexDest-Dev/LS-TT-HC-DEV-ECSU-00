@@ -8,4 +8,5 @@ public class UIConfiguration : ScriptableObject
     public Text timerTextPrefab;
     public GameObject tapToStart;
     public GameObject defeatScreenPrefab;
+    public GameObject victoryScreenPrefab;
 }

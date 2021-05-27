@@ -11,14 +11,22 @@ namespace Systems
         private UIConfiguration _uiConfiguration;
         public void Init()
         {
-            EcsEntity gameStart = _world.NewEntity();
-            gameStart.Get<GameStopped>();
-            gameStart.Get<BeforeStart>();
             Canvas rootCanvas = CreateRootCanvas();
 
             CreateTimerUI(rootCanvas);
             CreateTtsUI(rootCanvas);
             CreateDefeatUI(rootCanvas);
+            CreateVictoryUI(rootCanvas);
+        }
+        
+        //TODO: remove duplicating of code - make victory and defeat views as abstraction
+        private void CreateVictoryUI(Canvas rootCanvas)
+        {
+            EcsEntity victoryScreen = _world.NewEntity();
+            GameObject victoryScreenView =
+                GameObject.Instantiate(_uiConfiguration.victoryScreenPrefab, rootCanvas.transform);
+            victoryScreenView.SetActive(false);
+            victoryScreen.Get<VictoryScreen>().VictoryScreenView = victoryScreenView;
         }
 
         private void CreateDefeatUI(Canvas rootCanvas)

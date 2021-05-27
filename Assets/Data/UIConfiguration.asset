@@ -16,3 +16,4 @@ MonoBehaviour:
   timerTextPrefab: {fileID: 4457360866795574376, guid: c6f9283e216347445ac0c655930dcc56, type: 3}
   tapToStart: {fileID: 3147991308122624162, guid: 5edeb3cac33f49d42bc8256c8654aa41, type: 3}
   defeatScreenPrefab: {fileID: 2862270677467620458, guid: 0764f24ddfab5934c88fbe6f5db7ea00, type: 3}
+  victoryScreenPrefab: {fileID: 2624296141630305319, guid: aa682900d4b7f5940852c01c5d82fe3d, type: 3}

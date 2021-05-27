@@ -37,6 +37,7 @@ sealed class EcsStartup : MonoBehaviour {
             .Add(new DefeatCheckingSystem())
             .Add(new DefeatScreenActivatingSystem())
             .Add(new VictoryCheckingSystem())
+            .Add(new VictoryScreenActivatingSystem())
             .Add(new TimerUpdateSystem())
             // register one-frame components (order is important), for example:
             // .OneFrame<TestComponent1> ()

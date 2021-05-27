@@ -1,6 +1,5 @@
 ﻿using Components;
 using Leopotam.Ecs;
-using UnityEngine;
 
 namespace Systems
 {
@@ -8,6 +7,7 @@ namespace Systems
     {
         private EcsFilter<GlobalTimer> _roundTimerFilter;
         private EcsFilter<GameStopped> _gameStoppedFilter;
+        private EcsFilter<VictoryScreen> _victoryScreenFilter;
         private WorldConfiguration _worldConfiguration;
         private EcsWorld _world;
         public void Run()
@@ -15,12 +15,13 @@ namespace Systems
             if (_gameStoppedFilter.GetEntitiesCount() == 0)
             {
                 GlobalTimer currentGlobalTimer = _roundTimerFilter.Get1(0);
-                EcsEntity victory;
                 if (currentGlobalTimer.Time >= _worldConfiguration.roundTimer)
                 {
-                    victory = _world.NewEntity();
-                    victory.Get<Victory>();
-                    victory.Get<GameStopped>();
+                    foreach (var screenIndex in _victoryScreenFilter)
+                    {
+                        _victoryScreenFilter.GetEntity(screenIndex).Get<Victory>();
+                        
+                    }
                 }
             }
         }

@@ -16,6 +16,17 @@ namespace Systems
             CreateGlobalTimer();
 
             UpdateGravityParameter();
+            
+            CreateLastSpawnTime();
+            
+            CreateBeforeStartEntity();
+        }
+
+        private void CreateBeforeStartEntity()
+        {
+            EcsEntity gameStart = _world.NewEntity();
+            gameStart.Get<GameStopped>();
+            gameStart.Get<BeforeStart>();
         }
 
         private void UpdateGravityParameter()

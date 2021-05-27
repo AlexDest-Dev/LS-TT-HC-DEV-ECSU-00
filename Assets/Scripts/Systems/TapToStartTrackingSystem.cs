@@ -9,20 +9,23 @@ namespace Systems
     {
         private EcsFilter<GameStopped, BeforeStart> _beforeStartFilter;
         private EcsFilter<TTS> _ttsFilter;
-        private EcsFilter<Touch> _touchesFilter;
-    
+
         public void Run()
         {
-            if (_beforeStartFilter.IsEmpty() == false && _touchesFilter.IsEmpty() == false)
+            if (_beforeStartFilter.IsEmpty() == false)
             {
                 foreach (var ttsIndex in _ttsFilter)
                 {
-                    _ttsFilter.Get1(ttsIndex).TtsView.SetActive(false);
-                }
+                    TTS tapToStart = _ttsFilter.Get1(ttsIndex);
+                    if (tapToStart.TtsView.GetComponent<TapToStartUIHandler>().IsClicked)
+                    {
+                        tapToStart.TtsView.SetActive(false);
 
-                foreach (var beforeStartIndex in _beforeStartFilter)
-                {
-                    _beforeStartFilter.GetEntity(beforeStartIndex).Destroy();
+                        foreach (var beforeStartIndex in _beforeStartFilter)
+                        {
+                            _beforeStartFilter.GetEntity(beforeStartIndex).Destroy();
+                        }
+                    }
                 }
             }
         }

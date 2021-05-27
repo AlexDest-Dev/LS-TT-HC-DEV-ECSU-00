@@ -8,19 +8,23 @@ namespace Systems
     public class InputHandlerSystem : IEcsRunSystem
     {
         private EcsWorld _world;
+        private EcsFilter<GameStopped> _gameStoppedFilter;
         public void Run()
         {
-            for (int i = 0; i < Input.touchCount; i++)
+            if (_gameStoppedFilter.IsEmpty())
             {
-                
-                if (Input.GetTouch(i).phase == TouchPhase.Began)
+                for (int i = 0; i < Input.touchCount; i++)
                 {
-                    Debug.Log("Touched");
-                    EcsEntity touchPosition = _world.NewEntity();
-                    touchPosition.Get<Touch>().Position = Input.GetTouch(i).position;
+
+                    if (Input.GetTouch(i).phase == TouchPhase.Began)
+                    {
+                        Debug.Log("Touched");
+                        EcsEntity touchPosition = _world.NewEntity();
+                        touchPosition.Get<Touch>().Position = Input.GetTouch(i).position;
+                    }
                 }
             }
-            
+
         }
     }
 }
