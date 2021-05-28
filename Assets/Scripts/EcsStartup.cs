@@ -11,6 +11,7 @@ sealed class EcsStartup : MonoBehaviour {
     [SerializeField] private EnemyConfiguration _enemyConfiguration;
     [SerializeField] private WorldConfiguration _worldConfiguration;
     [SerializeField] private UIConfiguration _uiConfiguration;
+    [SerializeField] private LevelsConfiguration _levelsConfiguration;
 
     void Start () {
         // void can be switched to IEnumerator for support coroutines.
@@ -24,20 +25,21 @@ sealed class EcsStartup : MonoBehaviour {
         _systems
             // register your systems here, for example:
             .Add(new WorldInitializingSystem())
-            .Add(new CreatingSpawnPointsSystem())
             .Add(new UIInitializingSystem())
             .Add(new TimerUIUpdateSystem())
             .Add(new InputHandlerSystem())
             .Add(new TapToStartTrackingSystem())
             .Add(new RaycastingFromTouchesToWorldSystem())
             .Add(new FiringSystem())
-            .Add(new EnemyDestroyingSystem())
+            .Add(new DamageHandlingSystem())
+            .Add(new HealthModifyingSystem())
+            .Add(new EntityDestroyingSystem())
             .Add(new EnemySpawnSystem())
             .Add(new EntityMoveSystem())
             .Add(new DefeatCheckingSystem())
-            .Add(new DefeatScreenActivatingSystem())
             .Add(new VictoryCheckingSystem())
-            .Add(new VictoryScreenActivatingSystem())
+            .Add(new FinishScreenViewActivatingSystem())
+            .Add(new LevelsLoadSystem())
             .Add(new TimerUpdateSystem())
             // register one-frame components (order is important), for example:
             // .OneFrame<TestComponent1> ()
@@ -49,6 +51,7 @@ sealed class EcsStartup : MonoBehaviour {
             .Inject(_enemyConfiguration)
             .Inject(_worldConfiguration)
             .Inject(_uiConfiguration)
+            .Inject(_levelsConfiguration)
             .Init();
     }
 

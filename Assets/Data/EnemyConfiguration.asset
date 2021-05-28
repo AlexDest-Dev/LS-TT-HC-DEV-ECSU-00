@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: EnemyConfiguration
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1920201293208487900, guid: e612a19ba68e6a0489ec11c4ab7368db, type: 3}
-  speed: 3
+  enemyHealth: 100
+  enemySpeed: 5
   targetField: {fileID: 3067590898104195932, guid: 37894a6e54d10cd45b4f0dfc6f9bb19d, type: 3}

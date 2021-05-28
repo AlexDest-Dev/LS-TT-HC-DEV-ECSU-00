@@ -5,5 +5,6 @@ namespace Components
     public struct Shot
     {
         public GameObject ShotView;
+        public float ShotDamage;
     }
 }

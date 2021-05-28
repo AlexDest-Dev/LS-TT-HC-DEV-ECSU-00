@@ -5,36 +5,36 @@ using UnityEngine;
 
 namespace Systems
 {
-    public class EnemyDestroyingSystem : IEcsRunSystem
+    public class DamageHandlingSystem : IEcsRunSystem
     {
+        private EcsWorld _world;
         private EcsFilter<Shot> _shotFilter;
         private EcsFilter<Enemy> _enemyFilter;
         public void Run()
         {
-            foreach (var shot in _shotFilter)
+            foreach (var shotIndex in _shotFilter)
             {
-                ShotEnemyGetter shotEnemyGetter = _shotFilter.Get1(shot).ShotView.GetComponent<ShotEnemyGetter>();
+                ShotEnemyGetter shotEnemyGetter = _shotFilter.Get1(shotIndex).ShotView.GetComponent<ShotEnemyGetter>();
 
                 if (shotEnemyGetter.IsCollided)
                 {
                     List<GameObject> enemies = shotEnemyGetter.GetEnemiesFromShot;
-                    DestroyEnemies(enemies);
+                    SetDamageToEnemies(enemies, _shotFilter.Get1(shotIndex));
 
                     GameObject.Destroy(shotEnemyGetter.gameObject);
-                    _shotFilter.GetEntity(shot).Destroy();
+                    _shotFilter.GetEntity(shotIndex).Destroy();
                 }
             }
         }
-
-        private void DestroyEnemies(List<GameObject> enemies)
+        
+        private void SetDamageToEnemies(List<GameObject> collidedEnemies, Shot shot)
         {
             foreach (var enemyIndex in _enemyFilter)
             {
                 ref Enemy enemy = ref _enemyFilter.Get1(enemyIndex);
-                if (enemies.Contains(enemy.EnemyView))
+                if (collidedEnemies.Contains(enemy.EnemyView))
                 {
-                    GameObject.Destroy(enemy.EnemyView);
-                    _enemyFilter.GetEntity(enemyIndex).Destroy();
+                    _enemyFilter.GetEntity(enemyIndex).Get<Damage>().DamageAmount = shot.ShotDamage;
                 }
             }
         }

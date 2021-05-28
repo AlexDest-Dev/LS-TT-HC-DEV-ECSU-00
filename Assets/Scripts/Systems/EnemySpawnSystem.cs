@@ -38,9 +38,10 @@ public class EnemySpawnSystem : IEcsRunSystem
             GameObject.Instantiate(_enemyConfiguration.enemyPrefab, spawnPosition, Quaternion.identity);
 
         EcsEntity enemy = _world.NewEntity();
+        enemy.Get<Health>().HealthAmount = _enemyConfiguration.enemyHealth;
         ref Movable enemyMovable = ref enemy.Get<Movable>();
         
-        enemyMovable.Speed = _enemyConfiguration.speed;
+        enemyMovable.Speed = _enemyConfiguration.enemySpeed;
         enemyMovable.Transform = enemyView.transform;
         
         enemy.Get<Enemy>().EnemyView = enemyView;

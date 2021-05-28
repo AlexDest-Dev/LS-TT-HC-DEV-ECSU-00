@@ -15,27 +15,6 @@ namespace Systems
 
             CreateTimerUI(rootCanvas);
             CreateTtsUI(rootCanvas);
-            CreateDefeatUI(rootCanvas);
-            CreateVictoryUI(rootCanvas);
-        }
-        
-        //TODO: remove duplicating of code - make victory and defeat views as abstraction
-        private void CreateVictoryUI(Canvas rootCanvas)
-        {
-            EcsEntity victoryScreen = _world.NewEntity();
-            GameObject victoryScreenView =
-                GameObject.Instantiate(_uiConfiguration.victoryScreenPrefab, rootCanvas.transform);
-            victoryScreenView.SetActive(false);
-            victoryScreen.Get<VictoryScreen>().VictoryScreenView = victoryScreenView;
-        }
-
-        private void CreateDefeatUI(Canvas rootCanvas)
-        {
-            EcsEntity defeatScreen = _world.NewEntity();
-            GameObject defeatScreenView =
-                GameObject.Instantiate(_uiConfiguration.defeatScreenPrefab, rootCanvas.transform);
-            defeatScreenView.SetActive(false);
-            defeatScreen.Get<DefeatScreen>().DefeatScreenView = defeatScreenView;
         }
 
         private void CreateTtsUI(Canvas rootCanvas)

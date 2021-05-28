@@ -1,5 +1,6 @@
 ﻿using Components;
 using Leopotam.Ecs;
+using UnityEngine;
 
 namespace Systems
 {
@@ -7,8 +8,9 @@ namespace Systems
     {
         private EcsFilter<GlobalTimer> _roundTimerFilter;
         private EcsFilter<GameStopped> _gameStoppedFilter;
-        private EcsFilter<VictoryScreen> _victoryScreenFilter;
+        private EcsFilter<RootCanvas> _rootCanvasFilter;
         private WorldConfiguration _worldConfiguration;
+        private UIConfiguration _uiConfiguration;
         private EcsWorld _world;
         public void Run()
         {
@@ -17,13 +19,21 @@ namespace Systems
                 GlobalTimer currentGlobalTimer = _roundTimerFilter.Get1(0);
                 if (currentGlobalTimer.Time >= _worldConfiguration.roundTimer)
                 {
-                    foreach (var screenIndex in _victoryScreenFilter)
-                    {
-                        _victoryScreenFilter.GetEntity(screenIndex).Get<Victory>();
-                        
-                    }
+                    CreateVictoryFinishScreen();
                 }
             }
+        }
+
+        private void CreateVictoryFinishScreen()
+        {
+            Transform rootCanvasTransform = _rootCanvasFilter.Get1(0).RootCanvasView.transform;
+            GameObject finishScreenView =
+                GameObject.Instantiate(_uiConfiguration.victoryScreenPrefab, rootCanvasTransform);
+            finishScreenView.SetActive(false);
+            EcsEntity victoryFinishScreen = _world.NewEntity();
+            victoryFinishScreen.Get<FinishScreen>().FinishScreenView = finishScreenView;
+            victoryFinishScreen.Get<GameStopped>();
+            victoryFinishScreen.Get<Victory>();
         }
     }
 }

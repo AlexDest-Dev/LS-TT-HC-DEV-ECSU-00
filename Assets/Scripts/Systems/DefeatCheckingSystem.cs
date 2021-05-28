@@ -8,11 +8,11 @@ namespace Systems
     {
         private EcsFilter<Target> _targetFilter;
         private EcsFilter<GameStopped> _gameStoppedFilter;
-        private EcsFilter<DefeatScreen> _defeatScreenFilter;
+        private EcsFilter<RootCanvas> _rootCanvasFilter;
+        private UIConfiguration _uiConfiguration;
         private EcsWorld _world;
         public void Run()
         {
-            EcsEntity defeat;
             if(_gameStoppedFilter.GetEntitiesCount() == 0)
             {
                 foreach (var index in _targetFilter)
@@ -20,7 +20,7 @@ namespace Systems
                     Target target = _targetFilter.Get1(index);
                     if (IsCollided(target))
                     {
-                        AddDefeatComponent();
+                        CreateDefeatFinishScreen();
                     }
                 }
 
@@ -31,12 +31,16 @@ namespace Systems
             }
         }
 
-        private void AddDefeatComponent()
+        private void CreateDefeatFinishScreen()
         {
-            foreach (var defeatIndex in _defeatScreenFilter)
-            {
-                _defeatScreenFilter.GetEntity(defeatIndex).Get<Defeat>();
-            }
+            Transform rootCanvasTransform = _rootCanvasFilter.Get1(0).RootCanvasView.transform;
+            GameObject defeatFinishScreenView =
+                GameObject.Instantiate(_uiConfiguration.defeatScreenPrefab, rootCanvasTransform);
+            defeatFinishScreenView.SetActive(false);
+            EcsEntity defeatFinishScreen = _world.NewEntity();
+            defeatFinishScreen.Get<FinishScreen>().FinishScreenView = defeatFinishScreenView;
+            defeatFinishScreen.Get<GameStopped>();
+            defeatFinishScreen.Get<Defeat>();
         }
     }
 }

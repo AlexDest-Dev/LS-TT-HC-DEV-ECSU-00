@@ -21,8 +21,10 @@ namespace Systems
         {
             GameObject shotView = GameObject.Instantiate(_worldConfiguration.bombPrefab, 
                     new Vector3(position.x, _worldConfiguration.bombHeight, position.z), Quaternion.identity);
-            EcsEntity shot = _world.NewEntity();
-            shot.Get<Shot>().ShotView = shotView;
+            EcsEntity shotEntity = _world.NewEntity();
+            ref Shot shotComponent = ref shotEntity.Get<Shot>();
+            shotComponent.ShotView = shotView;
+            shotComponent.ShotDamage = _worldConfiguration.bombDamage;
         }
     }
 }

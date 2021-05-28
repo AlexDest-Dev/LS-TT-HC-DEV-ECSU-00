@@ -4,6 +4,7 @@
 internal class EnemyConfiguration : ScriptableObject
 {
     public GameObject enemyPrefab;
-    public float speed;
+    public float enemyHealth;
+    public float enemySpeed;
     public GameObject targetField;
 }

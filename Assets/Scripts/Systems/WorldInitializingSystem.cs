@@ -8,10 +8,13 @@ namespace Systems
     {
         private EcsWorld _world;
         private WorldConfiguration _worldConfiguration;
+        private SpawnConfiguration _spawnConfiguration;
     
         public void Init()
         {
             CreateTargetField();
+            
+            CreateSpawnPoints();
 
             CreateGlobalTimer();
 
@@ -20,6 +23,21 @@ namespace Systems
             CreateLastSpawnTime();
             
             CreateBeforeStartEntity();
+        }
+
+        private void CreateSpawnPoints()
+        {
+            foreach (var spawnPointPosition in _spawnConfiguration.spawnPointsPositions)
+            {
+                GameObject spawnerPointView = 
+                    GameObject.Instantiate(_spawnConfiguration.spawnPointPrefab, spawnPointPosition, Quaternion.identity);
+                
+                EcsEntity spawnPoint = _world.NewEntity();
+                
+                ref Spawner spawner = ref spawnPoint.Get<Spawner>();
+
+                spawner.SpawnerView = spawnerPointView;
+            }
         }
 
         private void CreateBeforeStartEntity()

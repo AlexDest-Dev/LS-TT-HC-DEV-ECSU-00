@@ -427,6 +427,7 @@ MonoBehaviour:
   _enemyConfiguration: {fileID: 11400000, guid: 8f9f207eea1ca854bb8f8078122c899b, type: 2}
   _worldConfiguration: {fileID: 11400000, guid: e706647bbec264a48b2360a51ae1b1b4, type: 2}
   _uiConfiguration: {fileID: 11400000, guid: 2efdda95848fed94ea20acdf17e56aef, type: 2}
+  _levelsConfiguration: {fileID: 11400000, guid: ef0931f244d75d246a0461d2bcda08b1, type: 2}
 --- !u!4 &1347817591
 Transform:
   m_ObjectHideFlags: 0
@@ -435,7 +436,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1347817589}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.263028, y: -2.514761, z: 8.023975}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
