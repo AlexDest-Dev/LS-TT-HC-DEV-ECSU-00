@@ -7,8 +7,13 @@ namespace Systems
 {
     public class FxCheckingSystem : IEcsRunSystem
     {
-        private EcsFilter<Shot, FxPlaying> _fxPlayingFilter;
+        private EcsFilter<Shot, FxChecking> _fxPlayingFilter;
         public void Run()
+        {
+            CheckShotsFx();
+        }
+
+        private void CheckShotsFx()
         {
             foreach (var fxIndex in _fxPlayingFilter)
             {
@@ -19,7 +24,7 @@ namespace Systems
                 {
                     EcsEntity shotEntity = _fxPlayingFilter.GetEntity(fxIndex);
                     shotEntity.Get<Destroy>();
-                    shotEntity.Del<FxPlaying>();
+                    shotEntity.Del<FxChecking>();
                 }
             }
         }

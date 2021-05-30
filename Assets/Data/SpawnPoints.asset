@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76374464660c4ab3b771e249179155f2, type: 3}
   m_Name: SpawnPoints
   m_EditorClassIdentifier: 
-  spawnPointsPositions:
+  _spawnPointPrefab: {fileID: 5356544848967880185, guid: 7156fbafa0f60fc4aa7347bbc325d42f, type: 3}
+  _spawnPointsPositions:
   - {x: -4.5, y: 1, z: 14}
   - {x: -2.5, y: 1, z: 14}
   - {x: -0.5, y: 1, z: 14}
-  - {x: 1.5, y: 1, z: 14}
-  - {x: 3.5, y: 1, z: 14}
-  spawnPointPrefab: {fileID: 5356544848967880185, guid: 7156fbafa0f60fc4aa7347bbc325d42f, type: 3}
-  spawnTimer: 1
+  - {x: 0.5, y: 1, z: 14}
+  - {x: 2.5, y: 1, z: 14}
+  - {x: 4.5, y: 1, z: 14}
+  _spawnTimer: 1.5

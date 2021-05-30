@@ -10,10 +10,10 @@ public class EntityMoveSystem : IEcsRunSystem
     private EcsFilter<GameStopped> _gameStoppedFilter;
     public void Run()
     {
-        MoveNavMeshEntities();
+        MoveNavMeshAgentsEntities();
     }
 
-    private void MoveNavMeshEntities()
+    private void MoveNavMeshAgentsEntities()
     {
         foreach (var entityIndex in _navMeshMovableFilter)
         {

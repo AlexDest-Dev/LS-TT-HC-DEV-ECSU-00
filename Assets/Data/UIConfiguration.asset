@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b726bb97086f4d2aaa3a820456ec5611, type: 3}
   m_Name: UIConfiguration
   m_EditorClassIdentifier: 
-  rootCanvasPrefab: {fileID: 4726660973367158350, guid: 08a84eb893d13094fb3541bc5f3ea1d8, type: 3}
-  timerTextPrefab: {fileID: 4457360866795574376, guid: c6f9283e216347445ac0c655930dcc56, type: 3}
-  tapToStart: {fileID: 3147991308122624162, guid: 5edeb3cac33f49d42bc8256c8654aa41, type: 3}
-  defeatScreenPrefab: {fileID: 2862270677467620458, guid: 0764f24ddfab5934c88fbe6f5db7ea00, type: 3}
-  victoryScreenPrefab: {fileID: 2624296141630305319, guid: aa682900d4b7f5940852c01c5d82fe3d, type: 3}
+  _rootCanvasPrefab: {fileID: 4726660973367158350, guid: 08a84eb893d13094fb3541bc5f3ea1d8, type: 3}
+  _timerTextPrefab: {fileID: 4457360866795574376, guid: c6f9283e216347445ac0c655930dcc56, type: 3}
+  _tapToStart: {fileID: 3147991308122624162, guid: 5edeb3cac33f49d42bc8256c8654aa41, type: 3}
+  _defeatScreenPrefab: {fileID: 2862270677467620458, guid: 0764f24ddfab5934c88fbe6f5db7ea00, type: 3}
+  _victoryScreenPrefab: {fileID: 2624296141630305319, guid: aa682900d4b7f5940852c01c5d82fe3d, type: 3}

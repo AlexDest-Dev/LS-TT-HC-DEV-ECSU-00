@@ -12,15 +12,21 @@ namespace Systems
         private WorldConfiguration _worldConfiguration;
         public void Run()
         {
-            if (_gameStoppedFilter.GetEntitiesCount() == 0)
+            if (_gameStoppedFilter.IsEmpty())
             {
                 foreach (var globalTimerIndex in _globalTimerFilter)
                 {
                     foreach (var timerUIIndex in _timerUiFilter)
                     {
+                        
                         float timeRemaining =
-                            Math.Abs(_worldConfiguration.roundTimer - _globalTimerFilter.Get1(globalTimerIndex).Time);
-                        _timerUiFilter.Get1(timerUIIndex).TimerUIView.text = Math.Round(timeRemaining).ToString();
+                            _worldConfiguration.RoundTimer - _globalTimerFilter.Get1(globalTimerIndex).Time;
+                        if (timeRemaining < 0f)
+                        {
+                            timeRemaining = 0f;
+                        }
+                        _timerUiFilter.Get1(timerUIIndex).TimerUIView.text = 
+                            "Time remaining: " + Math.Round(timeRemaining);
                     }
                 }
             }

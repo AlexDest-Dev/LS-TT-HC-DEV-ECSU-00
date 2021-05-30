@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41fc7c2324da4085a8f8fa6668d0c1ba, type: 3}
   m_Name: WorldConfiguration
   m_EditorClassIdentifier: 
-  targetField: {fileID: 3067590898104195932, guid: 37894a6e54d10cd45b4f0dfc6f9bb19d, type: 3}
-  roundTimer: 25
-  bombPrefab: {fileID: 4583838195718895016, guid: a5a4cb219dc430e47b1e00076033c483, type: 3}
-  bombHeight: 10
-  bombDamage: 200
-  bombDamageDistanceReduce: 2
-  gravityModifier: -15
+  _targetField: {fileID: 3067590898104195932, guid: 37894a6e54d10cd45b4f0dfc6f9bb19d, type: 3}
+  _obstaclePrefab: {fileID: 5124966837569405165, guid: a1d4e8b34087bb040b626ae8a984b41c, type: 3}
+  _shotTypes:
+  - {fileID: 11400000, guid: ea0c2e5c05e2f23449f603e50b446a8c, type: 2}
+  _roundTimer: 25
+  _shotHeight: 10
+  _gravityModifier: -15
+  _obstaclesAmount: 5

@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd27745d123842b8acd5ab668e5a2475, type: 3}
-  m_Name: EnemyConfiguration
+  m_Script: {fileID: 11500000, guid: 42e572ba51a0261489df2433b043d089, type: 3}
+  m_Name: SimpleShot
   m_EditorClassIdentifier: 
-  _enemyTypes:
-  - {fileID: 11400000, guid: 99fd6dc98d832fd4ea7454519cf1646e, type: 2}
+  _shotPrefab: {fileID: 4583838195718895016, guid: a5a4cb219dc430e47b1e00076033c483, type: 3}
+  _damage: 100
+  _radius: 1.5
+  _damageDistanceModifier: 1
+  _explosionForce: 1000

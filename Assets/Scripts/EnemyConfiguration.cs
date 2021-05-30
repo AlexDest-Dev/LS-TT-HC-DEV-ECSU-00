@@ -3,8 +3,11 @@
 [CreateAssetMenu(menuName = "Data/EnemyConfiguration", fileName = "NewEnemyConfiguration", order = 3)]
 internal class EnemyConfiguration : ScriptableObject
 {
-    public GameObject enemyPrefab;
-    public float enemyHealth;
-    public float enemySpeed;
-    public GameObject targetField;
+    [SerializeField] private EnemyType[] _enemyTypes;
+
+    public EnemyType GetRandomEnemy()
+    {
+        int index = Random.Range(0, _enemyTypes.Length);
+        return _enemyTypes[index];
+    }
 }

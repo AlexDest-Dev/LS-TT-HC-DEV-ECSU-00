@@ -1218,7 +1218,7 @@ public class CFXEasyEditor : EditorWindow
 			dest.startColor = source.startColor;
 			dest.startRotation = source.startRotation;
 			dest.startLifetime = source.startLifetime;
-			dest.gravityModifier = source.gravityModifier;
+			dest.GravityModifier = source.GravityModifier;
 #endif
 		}
 		
@@ -1537,13 +1537,13 @@ public class CFXEasyEditor : EditorWindow
 #endif
 #if UNITY_5_5_OR_NEWER
 		"EmissionModule.rateOverDistance.scalar",
-		"InitialModule.gravityModifier.scalar",
+		"InitialModule.GravityModifier.scalar",
 	#if UNITY_2017_1_OR_NEWER
 		"EmissionModule.rateOverDistance.minScalar",
-		"InitialModule.gravityModifier.minScalar",
+		"InitialModule.GravityModifier.minScalar",
 	#endif
 #else
-		"InitialModule.gravityModifier",
+		"InitialModule.GravityModifier",
 		"EmissionModule.rate.scalar",
 #endif
 	};

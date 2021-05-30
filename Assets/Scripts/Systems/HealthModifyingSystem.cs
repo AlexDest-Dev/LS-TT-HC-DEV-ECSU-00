@@ -11,6 +11,11 @@ namespace Systems
         private EcsFilter<Health> _healthFilter;
         public void Run()
         {
+            ApplyDamage();
+        }
+
+        private void ApplyDamage()
+        {
             foreach (var damageIndex in _damagedFilter)
             {
                 EcsEntity damagedEntity = _damagedFilter.GetEntity(damageIndex);
@@ -20,13 +25,13 @@ namespace Systems
                     healthComponent.CurrentHealthAmount -= damagedEntity.Get<Damage>().DamageAmount;
                     if (healthComponent.CurrentHealthAmount <= 0)
                     {
-                        SetDestroy(damagedEntity);
+                        SetDestroyComponent(damagedEntity);
                     }
                 }
             }
         }
 
-        private void SetDestroy(EcsEntity destroyingEntity)
+        private void SetDestroyComponent(EcsEntity destroyingEntity)
         {
             destroyingEntity.Get<Destroy>();
         }

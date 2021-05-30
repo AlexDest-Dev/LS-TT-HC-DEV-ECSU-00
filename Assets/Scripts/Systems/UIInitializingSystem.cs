@@ -20,7 +20,7 @@ namespace Systems
 
         private void CreateTtsUI(Canvas rootCanvas)
         {
-            GameObject ttsView = GameObject.Instantiate(_uiConfiguration.tapToStart, rootCanvas.transform);
+            GameObject ttsView = GameObject.Instantiate(_uiConfiguration.TapToStart, rootCanvas.transform);
             EcsEntity ttsUI = _world.NewEntity();
             ttsView.GetComponent<TapToStartEntityMonoBehaviour>().SetEcsEntity(ttsUI);
             ttsUI.Get<TTS>().TtsView = ttsView;
@@ -29,14 +29,14 @@ namespace Systems
         private void CreateTimerUI(Canvas rootCanvas)
         {
             EcsEntity timerUI = _world.NewEntity();
-            Text timerUIView = GameObject.Instantiate(_uiConfiguration.timerTextPrefab, rootCanvas.transform);
+            Text timerUIView = GameObject.Instantiate(_uiConfiguration.TimerTextPrefab, rootCanvas.transform);
             timerUI.Get<TimerUI>().TimerUIView = timerUIView;
         }
 
         private Canvas CreateRootCanvas()
         {
             EcsEntity uiRootCanvas = _world.NewEntity();
-            Canvas rootCanvasView = GameObject.Instantiate(_uiConfiguration.rootCanvasPrefab);
+            Canvas rootCanvasView = GameObject.Instantiate(_uiConfiguration.RootCanvasPrefab);
             uiRootCanvas.Get<RootCanvas>().RootCanvasView = rootCanvasView;
             return rootCanvasView;
         }

@@ -9,15 +9,16 @@ namespace Systems
         private EcsFilter<GlobalTimer> _roundTimerFilter;
         private EcsFilter<GameStopped> _gameStoppedFilter;
         private EcsFilter<RootCanvas> _rootCanvasFilter;
+        private EcsFilter<Enemy>.Exclude<Destroy> _liveEnemyFilter;
         private WorldConfiguration _worldConfiguration;
         private UIConfiguration _uiConfiguration;
         private EcsWorld _world;
         public void Run()
         {
-            if (_gameStoppedFilter.GetEntitiesCount() == 0)
+            if (_gameStoppedFilter.IsEmpty() && _liveEnemyFilter.IsEmpty())
             {
                 GlobalTimer currentGlobalTimer = _roundTimerFilter.Get1(0);
-                if (currentGlobalTimer.Time >= _worldConfiguration.roundTimer)
+                if (currentGlobalTimer.Time >= _worldConfiguration.RoundTimer)
                 {
                     CreateVictoryFinishScreen();
                 }
@@ -28,7 +29,7 @@ namespace Systems
         {
             Transform rootCanvasTransform = _rootCanvasFilter.Get1(0).RootCanvasView.transform;
             GameObject finishScreenView =
-                GameObject.Instantiate(_uiConfiguration.victoryScreenPrefab, rootCanvasTransform);
+                GameObject.Instantiate(_uiConfiguration.VictoryScreenPrefab, rootCanvasTransform);
             finishScreenView.SetActive(false);
             
             EcsEntity victoryFinishScreen = _world.NewEntity();

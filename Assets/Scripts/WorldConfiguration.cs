@@ -3,13 +3,25 @@
 [CreateAssetMenu]
 public class WorldConfiguration : ScriptableObject
 {
-    public GameObject targetField;
-    public float roundTimer;
+    [SerializeField] private GameObject _targetField;
+    [SerializeField] private GameObject _obstaclePrefab;
+    [SerializeField] private ShotType[] _shotTypes;
+    [SerializeField] private float _roundTimer = 25f;
+    [SerializeField] private float _shotHeight = 10f;
+    [SerializeField] private float _gravityModifier = -15f;
+    [SerializeField] private int _obstaclesAmount = 5;
 
-    public GameObject bombPrefab;
-    public float bombHeight = 10f;
-    public float bombDamage = 50f;
-    public float bombDamageDistanceReduce = 1f;
+    public float ShotHeight => _shotHeight;
+    public GameObject TargetField => _targetField;
+    public float RoundTimer => _roundTimer;
+    public float GravityModifier => _gravityModifier;
+    public int ObstaclesAmount => _obstaclesAmount;
+    public GameObject ObstaclePrefab => _obstaclePrefab;
 
-    public float gravityModifier = -15f;
+
+    public ShotType GetRandomShotType()
+    {
+        int index = Random.Range(0, _shotTypes.Length);
+        return _shotTypes[index];
+    }
 }

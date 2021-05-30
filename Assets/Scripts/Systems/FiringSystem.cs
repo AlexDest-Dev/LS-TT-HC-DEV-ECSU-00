@@ -20,13 +20,18 @@ namespace Systems
 
         private void CreateShot(Vector3 position)
         {
-            GameObject shotView = GameObject.Instantiate(_worldConfiguration.bombPrefab, 
-                    new Vector3(position.x, _worldConfiguration.bombHeight, position.z), Quaternion.identity);
+            ShotType shotType = _worldConfiguration.GetRandomShotType();
+            GameObject shotView = GameObject.Instantiate(shotType.ShotPrefab, 
+                    new Vector3(position.x, _worldConfiguration.ShotHeight, position.z), Quaternion.identity);
+            
             EcsEntity shotEntity = _world.NewEntity();
             shotView.GetComponent<BombEntityMonoBehaviour>().SetEcsEntity(shotEntity);
+            
             ref Shot shotComponent = ref shotEntity.Get<Shot>();
             shotComponent.ShotView = shotView;
-            shotComponent.ShotDamage = _worldConfiguration.bombDamage;
+            shotComponent.ShotDamage = shotType.Damage;
+            shotComponent.Radius = shotType.Radius;
+            shotComponent.ShotType = shotType;
         }
     }
 }

@@ -27,7 +27,7 @@ namespace Systems
         {
             Transform rootCanvasTransform = _rootCanvasFilter.Get1(0).RootCanvasView.transform;
             GameObject defeatFinishScreenView =
-                GameObject.Instantiate(_uiConfiguration.defeatScreenPrefab, rootCanvasTransform);
+                GameObject.Instantiate(_uiConfiguration.DefeatScreenPrefab, rootCanvasTransform);
             defeatFinishScreenView.SetActive(false);
             
             EcsEntity defeatFinishScreen = _world.NewEntity();

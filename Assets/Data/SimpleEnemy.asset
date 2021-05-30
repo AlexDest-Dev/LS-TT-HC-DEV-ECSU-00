@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd27745d123842b8acd5ab668e5a2475, type: 3}
-  m_Name: EnemyConfiguration
+  m_Script: {fileID: 11500000, guid: 9009da16b40f4a39bf449f573cd50046, type: 3}
+  m_Name: SimpleEnemy
   m_EditorClassIdentifier: 
-  _enemyTypes:
-  - {fileID: 11400000, guid: 99fd6dc98d832fd4ea7454519cf1646e, type: 2}
+  _enemyPrefab: {fileID: 6351541358703958946, guid: c9cf8dd86754a144e81fb7d3cf0301bd, type: 3}
+  _enemyHealth: 100
+  _enemySpeed: 5
