@@ -16,6 +16,7 @@ MonoBehaviour:
   _obstaclePrefab: {fileID: 5124966837569405165, guid: a1d4e8b34087bb040b626ae8a984b41c, type: 3}
   _shotTypes:
   - {fileID: 11400000, guid: ea0c2e5c05e2f23449f603e50b446a8c, type: 2}
+  - {fileID: 11400000, guid: f5448306cfb35e14eb96613b84139212, type: 2}
   _roundTimer: 25
   _shotHeight: 10
   _gravityModifier: -15

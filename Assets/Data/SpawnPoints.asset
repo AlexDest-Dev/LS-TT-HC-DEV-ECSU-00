@@ -20,4 +20,4 @@ MonoBehaviour:
   - {x: 0.5, y: 1, z: 14}
   - {x: 2.5, y: 1, z: 14}
   - {x: 4.5, y: 1, z: 14}
-  _spawnTimer: 1.5
+  _spawnTimer: 2.5
