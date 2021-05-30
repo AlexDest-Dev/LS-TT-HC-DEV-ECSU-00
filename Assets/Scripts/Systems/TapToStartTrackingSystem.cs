@@ -8,7 +8,7 @@ namespace Systems
     public class TapToStartTrackingSystem : IEcsRunSystem
     {
         private EcsFilter<GameStopped, BeforeStart> _beforeStartFilter;
-        private EcsFilter<TTS> _ttsFilter;
+        private EcsFilter<TTS, Clicked> _ttsFilter;
 
         public void Run()
         {
@@ -17,14 +17,11 @@ namespace Systems
                 foreach (var ttsIndex in _ttsFilter)
                 {
                     TTS tapToStart = _ttsFilter.Get1(ttsIndex);
-                    if (tapToStart.TtsView.GetComponent<TapToStartUIHandler>().IsClicked)
-                    {
-                        tapToStart.TtsView.SetActive(false);
+                    tapToStart.TtsView.SetActive(false);
 
-                        foreach (var beforeStartIndex in _beforeStartFilter)
-                        {
-                            _beforeStartFilter.GetEntity(beforeStartIndex).Destroy();
-                        }
+                    foreach (var beforeStartIndex in _beforeStartFilter)
+                    {
+                        _beforeStartFilter.GetEntity(beforeStartIndex).Destroy();
                     }
                 }
             }

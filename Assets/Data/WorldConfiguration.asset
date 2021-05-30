@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetField: {fileID: 3067590898104195932, guid: 37894a6e54d10cd45b4f0dfc6f9bb19d, type: 3}
   roundTimer: 25
-  bombHeight: 10
   bombPrefab: {fileID: 4583838195718895016, guid: a5a4cb219dc430e47b1e00076033c483, type: 3}
+  bombHeight: 10
+  bombDamage: 200
+  bombDamageDistanceReduce: 2
+  gravityModifier: -15

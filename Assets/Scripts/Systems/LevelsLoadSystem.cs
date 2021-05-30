@@ -6,7 +6,7 @@ namespace Systems
 {
     public class LevelsLoadSystem : IEcsRunSystem
     {
-        private EcsFilter<GameStopped, FinishScreen> _finishedGameFilter;
+        private EcsFilter<GameStopped, FinishScreen, Clicked> _finishedGameFilter;
         private LevelsConfiguration _levelsConfiguration;
     
         public void Run()
@@ -14,12 +14,7 @@ namespace Systems
             foreach (var finishedGameIndex in _finishedGameFilter)
             {
                 EcsEntity finishedGame = _finishedGameFilter.GetEntity(finishedGameIndex);
-                FinishScreenButtonHandler buttonHandler = finishedGame.Get<FinishScreen>().FinishScreenView
-                    .GetComponentInChildren<FinishScreenButtonHandler>();
-                if (buttonHandler.IsClicked)
-                {
-                    LoadLevel(finishedGame);
-                }
+                LoadLevel(finishedGame);
             }
         }
 

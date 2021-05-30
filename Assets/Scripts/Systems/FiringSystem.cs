@@ -1,4 +1,5 @@
 ﻿using Components;
+using EntitiesMonoBehaviour;
 using Leopotam.Ecs;
 using UnityEngine;
 
@@ -22,6 +23,7 @@ namespace Systems
             GameObject shotView = GameObject.Instantiate(_worldConfiguration.bombPrefab, 
                     new Vector3(position.x, _worldConfiguration.bombHeight, position.z), Quaternion.identity);
             EcsEntity shotEntity = _world.NewEntity();
+            shotView.GetComponent<BombEntityMonoBehaviour>().SetEcsEntity(shotEntity);
             ref Shot shotComponent = ref shotEntity.Get<Shot>();
             shotComponent.ShotView = shotView;
             shotComponent.ShotDamage = _worldConfiguration.bombDamage;

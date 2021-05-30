@@ -1,5 +1,6 @@
 ﻿using Components;
 using Leopotam.Ecs;
+using UnityEngine;
 
 namespace Systems
 {
@@ -16,8 +17,8 @@ namespace Systems
                 if (damagedEntity.Has<Health>())
                 {
                     ref Health healthComponent = ref damagedEntity.Get<Health>();
-                    healthComponent.HealthAmount -= damagedEntity.Get<Damage>().DamageAmount;
-                    if (healthComponent.HealthAmount <= 0)
+                    healthComponent.CurrentHealthAmount -= damagedEntity.Get<Damage>().DamageAmount;
+                    if (healthComponent.CurrentHealthAmount <= 0)
                     {
                         SetDestroy(damagedEntity);
                     }

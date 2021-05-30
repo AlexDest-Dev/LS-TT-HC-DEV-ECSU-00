@@ -2,6 +2,7 @@
 {
     public struct Health
     {
-        public float HealthAmount;
+        public float CurrentHealthAmount;
+        public float MaxHealthAmount;
     }
 }

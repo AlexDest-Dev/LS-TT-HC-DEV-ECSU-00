@@ -71,6 +71,7 @@ namespace Systems
             GameObject targetField = GameObject.Instantiate(_worldConfiguration.targetField);
 
             EcsEntity target = _world.NewEntity();
+            targetField.GetComponent<TargetEntityMonoBehaviour>().SetEcsEntity(target);
             target.Get<Target>().TargetField = targetField;
         }
     }

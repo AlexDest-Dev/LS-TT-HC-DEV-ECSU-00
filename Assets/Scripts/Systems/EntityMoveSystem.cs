@@ -1,20 +1,34 @@
 ﻿using Components;
 using Leopotam.Ecs;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EntityMoveSystem : IEcsRunSystem
 {
-    private EcsFilter<Movable> _filter;
+    private EcsFilter<Movable, NavigationMeshAgent> _navMeshMovableFilter;
+    private EcsFilter<Target> _targetFilter;
     private EcsFilter<GameStopped> _gameStoppedFilter;
     public void Run()
     {
-        if (_gameStoppedFilter.GetEntitiesCount() == 0)
+        MoveNavMeshEntities();
+    }
+
+    private void MoveNavMeshEntities()
+    {
+        foreach (var entityIndex in _navMeshMovableFilter)
         {
-            foreach (var entity in _filter)
+            NavMeshAgent enemyAgent =
+                _navMeshMovableFilter.Get1(entityIndex).Transform.GetComponentInChildren<NavMeshAgent>();
+            if (_gameStoppedFilter.GetEntitiesCount() == 0)
             {
-                float entitySpeed = _filter.Get1(entity).Speed;
-                Transform entityTransform = _filter.Get1(entity).Transform;
-                entityTransform.Translate(Vector3.back * entitySpeed * Time.deltaTime);
+                EcsEntity entity = _navMeshMovableFilter.GetEntity(entityIndex);
+                float entitySpeed = _navMeshMovableFilter.Get1(entityIndex).Speed;
+                enemyAgent.speed = entitySpeed;
+                enemyAgent.SetDestination(_targetFilter.Get1(0).TargetField.transform.position);
+            }
+            else
+            {
+                enemyAgent.isStopped = true;
             }
         }
     }

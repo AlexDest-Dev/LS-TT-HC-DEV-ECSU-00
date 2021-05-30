@@ -30,7 +30,9 @@ namespace Systems
             GameObject finishScreenView =
                 GameObject.Instantiate(_uiConfiguration.victoryScreenPrefab, rootCanvasTransform);
             finishScreenView.SetActive(false);
+            
             EcsEntity victoryFinishScreen = _world.NewEntity();
+            finishScreenView.GetComponentInChildren<ButtonEntityMonoBehaviour>().SetEcsEntity(victoryFinishScreen);
             victoryFinishScreen.Get<FinishScreen>().FinishScreenView = finishScreenView;
             victoryFinishScreen.Get<GameStopped>();
             victoryFinishScreen.Get<Victory>();

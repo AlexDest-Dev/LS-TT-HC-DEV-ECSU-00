@@ -1,5 +1,6 @@
 ﻿using System;
 using Components;
+using EntitiesMonoBehaviour;
 using Leopotam.Ecs;
 using UnityEngine;
 
@@ -36,14 +37,20 @@ public class EnemySpawnSystem : IEcsRunSystem
     {
         GameObject enemyView =
             GameObject.Instantiate(_enemyConfiguration.enemyPrefab, spawnPosition, Quaternion.identity);
-
-        EcsEntity enemy = _world.NewEntity();
-        enemy.Get<Health>().HealthAmount = _enemyConfiguration.enemyHealth;
-        ref Movable enemyMovable = ref enemy.Get<Movable>();
+        EnemyEntityMonoBehaviour enemyEntityMonoBehaviour = enemyView.GetComponentInChildren<EnemyEntityMonoBehaviour>();
         
+        EcsEntity enemyEntity = _world.NewEntity();
+        enemyEntityMonoBehaviour.SetEcsEntity(enemyEntity);
+        enemyEntity.Get<Enemy>().EnemyView = enemyView;
+        
+        ref Health enemyHealth = ref enemyEntity.Get<Health>();
+        enemyHealth.MaxHealthAmount = _enemyConfiguration.enemyHealth;
+        enemyHealth.CurrentHealthAmount = enemyHealth.MaxHealthAmount;
+        
+        ref Movable enemyMovable = ref enemyEntity.Get<Movable>();
         enemyMovable.Speed = _enemyConfiguration.enemySpeed;
         enemyMovable.Transform = enemyView.transform;
-        
-        enemy.Get<Enemy>().EnemyView = enemyView;
+
+        enemyEntity.Get<NavigationMeshAgent>();
     }
 }

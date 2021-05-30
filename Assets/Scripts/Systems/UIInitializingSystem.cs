@@ -1,4 +1,5 @@
 ﻿using Components;
+using EntitiesMonoBehaviour;
 using Leopotam.Ecs;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,8 +20,9 @@ namespace Systems
 
         private void CreateTtsUI(Canvas rootCanvas)
         {
-            EcsEntity ttsUI = _world.NewEntity();
             GameObject ttsView = GameObject.Instantiate(_uiConfiguration.tapToStart, rootCanvas.transform);
+            EcsEntity ttsUI = _world.NewEntity();
+            ttsView.GetComponent<TapToStartEntityMonoBehaviour>().SetEcsEntity(ttsUI);
             ttsUI.Get<TTS>().TtsView = ttsView;
         }
 
