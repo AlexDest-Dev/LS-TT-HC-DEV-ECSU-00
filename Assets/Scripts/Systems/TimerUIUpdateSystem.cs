@@ -23,6 +23,7 @@ namespace Systems
                             _worldConfiguration.RoundTimer - _globalTimerFilter.Get1(globalTimerIndex).Time;
                         if (timeRemaining < 0f)
                         {
+                            _globalTimerFilter.GetEntity(globalTimerIndex).Get<TimeIsUp>();
                             timeRemaining = 0f;
                         }
                         _timerUiFilter.Get1(timerUIIndex).TimerUIView.text = 

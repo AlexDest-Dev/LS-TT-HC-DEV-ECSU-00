@@ -10,13 +10,14 @@ public class EnemySpawnSystem : IEcsRunSystem
     private EcsFilter<GlobalTimer> _timerFilter;
     private EcsFilter<LastSpawnTime> _lastTimeSpawnFilter;
     private EcsFilter<GameStopped> _gameStoppedFilter;
+    private EcsFilter<TimeIsUp> _timeIsUpFilter;
     private EnemyConfiguration _enemyConfiguration;
     private SpawnConfiguration _spawnConfiguration;
     private EcsWorld _world;
     
     public void Run()
     {
-        if (_gameStoppedFilter.IsEmpty())
+        if (_gameStoppedFilter.IsEmpty() && _timeIsUpFilter.IsEmpty())
         {
             ref GlobalTimer globalTimer = ref _timerFilter.Get1(0);
             ref LastSpawnTime lastSpawnTime = ref _lastTimeSpawnFilter.Get1(0);

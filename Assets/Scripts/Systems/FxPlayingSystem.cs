@@ -28,7 +28,7 @@ public class FxPlayingSystem : IEcsRunSystem
         foreach (var shotIndex in _collidedShotFilter)
         {
             GameObject shotView = _collidedShotFilter.Get1(shotIndex).ShotView;
-            GameObject shotMain = shotView.GetComponent<BombEntityMonoBehaviour>().gameObject;
+            GameObject shotMain = shotView.GetComponent<ShotEntityMonoBehaviour>().gameObject;
 
             ParticleSystem bombParticle = shotMain.GetComponentInChildren<ParticleSystem>();
             Debug.Log(bombParticle.name);

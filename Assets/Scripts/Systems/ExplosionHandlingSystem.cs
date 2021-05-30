@@ -15,15 +15,15 @@ namespace Systems
             foreach (var shotIndex in _collidedShotFilter)
             {
                 ref Shot shotComponent = ref _collidedShotFilter.Get1(shotIndex);
-                BombEntityMonoBehaviour bomb = shotComponent.ShotView.GetComponent<BombEntityMonoBehaviour>();
+                ShotEntityMonoBehaviour shot = shotComponent.ShotView.GetComponent<ShotEntityMonoBehaviour>();
 
-                Collider[] colliders = Physics.OverlapSphere(bomb.transform.position, shotComponent.Radius);
+                Collider[] colliders = Physics.OverlapSphere(shot.transform.position, shotComponent.Radius);
 
                 foreach (var collider in colliders)
                 {
                     if (collider.TryGetComponent(out ObstacleEntityMonoBehaviour obstacle))
                     {
-                        collider.GetComponent<Rigidbody>().AddExplosionForce(shotComponent.ShotType.ExplosionForce, bomb.transform.position, shotComponent.Radius);
+                        collider.GetComponent<Rigidbody>().AddExplosionForce(shotComponent.ShotType.ExplosionForce, shot.transform.position, shotComponent.Radius);
                     }
                 }
             }

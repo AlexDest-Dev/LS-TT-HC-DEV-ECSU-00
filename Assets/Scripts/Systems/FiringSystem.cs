@@ -25,7 +25,7 @@ namespace Systems
                     new Vector3(position.x, _worldConfiguration.ShotHeight, position.z), Quaternion.identity);
             
             EcsEntity shotEntity = _world.NewEntity();
-            shotView.GetComponent<BombEntityMonoBehaviour>().SetEcsEntity(shotEntity);
+            shotView.GetComponent<ShotEntityMonoBehaviour>().SetEcsEntity(shotEntity);
             
             ref Shot shotComponent = ref shotEntity.Get<Shot>();
             shotComponent.ShotView = shotView;

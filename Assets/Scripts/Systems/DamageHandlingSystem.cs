@@ -18,8 +18,8 @@ namespace Systems
             foreach (var shotIndex in _shotFilter)
             {
                 ref Shot shotComponent = ref _shotFilter.Get1(shotIndex);
-                BombEntityMonoBehaviour shotEnemyGetter = 
-                    shotComponent.ShotView.GetComponent<BombEntityMonoBehaviour>();
+                ShotEntityMonoBehaviour shotEnemyGetter = 
+                    shotComponent.ShotView.GetComponent<ShotEntityMonoBehaviour>();
                 Transform shotTransform = shotEnemyGetter.transform;
 
                 List<EnemyEntityMonoBehaviour> enemies = CheckEnemiesInRadiusOfShot(shotTransform, shotComponent.Radius);

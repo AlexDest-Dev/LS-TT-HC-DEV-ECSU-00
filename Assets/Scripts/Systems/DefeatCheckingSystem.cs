@@ -13,13 +13,9 @@ namespace Systems
         private EcsWorld _world;
         public void Run()
         {
-            if(_gameStoppedFilter.GetEntitiesCount() == 0)
+            if(_gameStoppedFilter.IsEmpty() && _targetFilter.IsEmpty() == false)
             {
-                foreach (var index in _targetFilter)
-                {
-                    Target target = _targetFilter.Get1(index);
-                    CreateDefeatFinishScreen(); 
-                }
+                CreateDefeatFinishScreen();
             }
         }
 

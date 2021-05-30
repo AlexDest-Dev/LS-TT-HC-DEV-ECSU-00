@@ -17,10 +17,10 @@ namespace Systems
         {
             foreach (var fxIndex in _fxPlayingFilter)
             {
-                BombEntityMonoBehaviour bombEntityMonoBehaviour = _fxPlayingFilter.Get1(fxIndex).ShotView
-                    .GetComponent<BombEntityMonoBehaviour>();
+                ShotEntityMonoBehaviour shotEntityMonoBehaviour = _fxPlayingFilter.Get1(fxIndex).ShotView
+                    .GetComponent<ShotEntityMonoBehaviour>();
 
-                if (bombEntityMonoBehaviour.GetComponentInChildren<ParticleSystem>().IsAlive() == false)
+                if (shotEntityMonoBehaviour.GetComponentInChildren<ParticleSystem>().IsAlive() == false)
                 {
                     EcsEntity shotEntity = _fxPlayingFilter.GetEntity(fxIndex);
                     shotEntity.Get<Destroy>();
