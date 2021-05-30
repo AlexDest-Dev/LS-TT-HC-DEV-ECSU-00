@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd27745d123842b8acd5ab668e5a2475, type: 3}
-  m_Name: EnemyConfiguration
+  m_Script: {fileID: 11500000, guid: 9009da16b40f4a39bf449f573cd50046, type: 3}
+  m_Name: HeavyEnemy
   m_EditorClassIdentifier: 
-  _enemyTypes:
-  - {fileID: 11400000, guid: 99fd6dc98d832fd4ea7454519cf1646e, type: 2}
-  - {fileID: 11400000, guid: eee6b087afbb7934ca942a1e274a65d4, type: 2}
+  _enemyPrefab: {fileID: 436681269131815799, guid: 44bf1d4d95906ea4db5b7f6f496117ce, type: 3}
+  _enemyHealth: 300
+  _enemySpeed: 1
